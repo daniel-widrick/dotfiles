@@ -15,3 +15,10 @@ ln -s ${BASEDIR}/.config/i3/config ~/.config/i3/config
 mkdir -p ~/.config/terminator
 rm -f ~/.config/terminator/config
 ln -s ${BASEDIR}/.config/terminator/config ~/.config/terminator/config
+
+#tigervnc server
+mkdir -p ~/.vnc
+rm -f ~/.vnc/config
+ln -s ${BASEDIR}/.vnc/config ~/.vnc/config
+rm -f ~/.vnc/xstartup
+ln -s ${BASEDIR}/.vnc/xstartup ~/.vnc/xstartup
