@@ -3,3 +3,5 @@
 [user]
 	email = daniel@widrick.net
 	name = Daniel Widrick
+[core]
+	autocrlf = input

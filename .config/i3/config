@@ -183,3 +183,4 @@ bar {
 #custom
 bindsym $mod+Return exec terminator
 bindsym $mod+b exec brave-browser
+focus_follows_mouse no
