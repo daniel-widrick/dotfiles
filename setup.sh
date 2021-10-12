@@ -23,3 +23,6 @@ rm -f ~/.vnc/config
 ln -s ${BASEDIR}/.vnc/config ~/.vnc/config
 rm -f ~/.vnc/xstartup
 ln -s ${BASEDIR}/.vnc/xstartup ~/.vnc/xstartup
+
+#timezone
+timedatectl set-timezone America/New_York
