@@ -9,7 +9,8 @@ sudo dnf install -y terminator i3 ImageMagick
 sudo dnf install -y dnf-plugins-core
 sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
 sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-sudo dnf install brave-browser
+sudo dnf install -y brave-browser google-noto-emoji-color-fonts
+sudo fc-cache -f -v
 
 cp .vnc/xstartup ~/.vnc/
 cp .vnc/config ~/.vnc/
