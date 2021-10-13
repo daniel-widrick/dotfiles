@@ -2,15 +2,16 @@
 
 sudo mkdir /opt/{src,work}
 cd /opt/src
-sudo curl -OL https://download-cdn.jetbrains.com/rider/JetBrains.Rider-2021.2.1.tar.gz
+x#sudo curl -OL https://download-cdn.jetbrains.com/rider/JetBrains.Rider-2021.2.1.tar.gz
 
 sudo tar -xzvf JetBrains.Rider-2021.2.1.tar.gz
 sudo mv /opt/src/JetBrains\ Rider-2021.2.1 /opt/work/rider
 
-sudo curl -OL https://download.visualstudio.microsoft.com/download/pr/5fcb98bb-21e1-47a5-bb8e-bb25f41a3e52/04811d5d05b7e694f040d2a13c1aae4c/dotnet-sdk-6.0.100-rc.1.21463.6-linux-x64.tar.gz
+sudo curl -OL https://download.visualstudio.microsoft.com/download/pr/20283373-1d83-4879-8278-0afb7fd4035e/56f204f174743b29a656499ad0fc93c3/dotnet-sdk-6.0.100-rc.2.21505.57-linux-x64.tar.gz
+
 
 sudo mkdir /opt/work/dotnet
 cd /opt/work/dotnet
-sudo tar -xzvf /opt/src/dotnet-sdk-6.0.100-rc.1.21463.6-linux-x64.tar.gz
+sudo tar -xzvf dotnet-sdk-6.0.100-rc.2.21505.57-linux-x64.tar.gz
 
 dnf install -y mono-core mono-devel
