@@ -27,3 +27,5 @@ ln -s ${BASEDIR}/.vnc/xstartup ~/.vnc/xstartup
 
 #timezone
 timedatectl set-timezone America/New_York
+
+ln -s $HOME/dotfiles/bin $HOME/bin
