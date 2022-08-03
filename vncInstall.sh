@@ -3,7 +3,7 @@
 sudo dnf install -y tigervnc-server
 sudo cp /usr/lib/systemd/system/vncserver@.service /etc/systemd/system/
 sudo /usr/bin/cp .vnc/vncserver.users /etc/tigervnc/vncserver.users
-sudo dnf install -y terminator i3 ImageMagick
+sudo dnf install -y terminator i3 ImageMagick alacritty
 
 #Install Brave-Browser
 sudo dnf install -y dnf-plugins-core
