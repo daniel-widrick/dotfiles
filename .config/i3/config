@@ -184,4 +184,5 @@ bar {
 bindsym $mod+Return exec terminator
 bindsym $mod+b exec brave-browser
 bindsym $mod+t exec alacritty
+bindsym $mod+Shift+v exec alacritty -e fzf | xargs vim
 focus_follows_mouse no

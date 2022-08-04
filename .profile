@@ -11,3 +11,4 @@ then
 	alias goland=goland.sh
 fi
 myProfileLoaded="1"
+. "$HOME/.cargo/env"
