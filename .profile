@@ -9,6 +9,7 @@ then
 	alias dotnet=/opt/work/dotnet/dotnet
 	alias datagrip=datagrip.sh
 	alias goland=goland.sh
+	alias vim=nvim
 fi
 myProfileLoaded="1"
 . "$HOME/.cargo/env"
