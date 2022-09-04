@@ -11,3 +11,4 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-linux-x64.vsix > ~/bin/rust-analyzer
 chmod +x ~/bin/rust-analyzer
+#Run :CocInstall coc-rust-analyzer
