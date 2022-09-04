@@ -16,10 +16,20 @@ set undofile
 set incsearch
 set scrolloff=8
 
-set colorcolumn=80
+set colorcolumn=128
 set signcolumn=yes
 
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
+
+set clipboard+=unnamedplus
+
+
+call plug#begin(stdpath("data") . '/plugged')
+
+call plug#end()
+call plug#begin(stdpath("data") . '/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
