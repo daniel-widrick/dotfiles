@@ -28,8 +28,8 @@ set clipboard+=unnamedplus
 
 
 call plug#begin(stdpath("data") . '/plugged')
-
-call plug#end()
-call plug#begin(stdpath("data") . '/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 call plug#end()
+
+:colorscheme tokyonight
