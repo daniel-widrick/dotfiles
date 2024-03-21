@@ -1,5 +1,0 @@
-#!/bin/bash
-
-xrdb $HOME/.Xresources
-cd $HOME
-i3 -c &
