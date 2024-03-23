@@ -1,5 +1,5 @@
 set $mod Mod4
-set $term kitty
+set $term kitty --single-instance
 
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
@@ -133,6 +133,8 @@ bar {
 include /etc/sway/config.d/*
 
 bindsym	$mod+b exec firefox
+bindsym $mod+m exec swaymsg opacity 0.85
+bindsym $mod+shift+m exec swaymsg opacity 1
 output * {
 	background ~/Downloads/anime-jet-pilot.png fill
         resolution 1920x1080
