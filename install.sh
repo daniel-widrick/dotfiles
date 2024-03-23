@@ -10,7 +10,7 @@ export SCRIPT_DIR="$(dirname "$0")"
 sudo apt update
 sudo apt upgrade -y
 #Install the basic utils
-sudo apt install -y bind9-utils net-tools dnsutils vim git apt-file file cron \
+sudo apt install -y bind9-utils net-tools dnsutils git apt-file file cron \
 	sway swaylock wayvnc xwayland kitty openssl\
 	firefox
 #Install Jet Brains Unofficial Jetbrains repo
@@ -37,3 +37,20 @@ ln -s ~/snap/firefox/common/Downloads ~/Downloads
 
 cp anime*.png ~/Downloads
 cp -r .config ~/.config
+
+
+#Do NeoVim
+mkdir -p ~/.config/nvim
+sudo add-apt-repository -y ppa:neovim-ppa/unstable
+sudo apt update -y
+sudo apt install -y neovim ripgrep build-essential
+#Add nodejs....
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm install node
+
+#Install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+bash -c "rustup update"
