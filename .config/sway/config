@@ -1,5 +1,5 @@
 set $mod Mod4
-set $term kitty --single-instance
+set $term kitty --single-instance -c ~/.config/kitty/tokyo-night-kitty.conf
 
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
@@ -124,7 +124,7 @@ bar {
     status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
 
     colors {
-        statusline #ffffff
+        statusline #ffaaaa
         background #323232
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
@@ -136,11 +136,12 @@ bindsym	$mod+b exec firefox
 bindsym $mod+m exec swaymsg opacity 0.85
 bindsym $mod+shift+m exec swaymsg opacity 1
 bindsym $mod+l exec swaylock
+bindsym $mod+c exec copyq toggle
 output * {
 	background ~/Downloads/anime-jet-pilot.png fill
         resolution 1920x1080
 }
 focus_follows_mouse no
 
-exec copyq &
+exec copyq
 exec swayidle -w timeout 300 'swaylock'
