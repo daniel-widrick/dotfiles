@@ -11,7 +11,7 @@ sudo apt update
 sudo apt upgrade -y
 #Install the basic utils
 sudo apt install -y bind9-utils net-tools dnsutils git apt-file file cron \
-	sway swaylock wayvnc xwayland kitty openssl\
+	sway swaylock wayvnc xwayland kitty openssl copyq\
 	firefox
 #Install Jet Brains Unofficial Jetbrains repo
 curl -s https://s3.eu-central-1.amazonaws.com/jetbrains-ppa/0xA6E8698A.pub.asc | gpg --dearmor | sudo tee /usr/share/keyrings/jetbrains-ppa-archive-keyring.gpg > /dev/null
@@ -43,7 +43,7 @@ cp -r .config ~/.config
 mkdir -p ~/.config/nvim
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
 sudo apt update -y
-sudo apt install -y neovim ripgrep build-essential
+sudo apt install -y neovim ripgrep build-essential gcc make
 #Add nodejs....
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 export NVM_DIR="$HOME/.nvm"

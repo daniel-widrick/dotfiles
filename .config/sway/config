@@ -135,10 +135,12 @@ include /etc/sway/config.d/*
 bindsym	$mod+b exec firefox
 bindsym $mod+m exec swaymsg opacity 0.85
 bindsym $mod+shift+m exec swaymsg opacity 1
+bindsym $mod+l exec swaylock
 output * {
 	background ~/Downloads/anime-jet-pilot.png fill
         resolution 1920x1080
 }
 focus_follows_mouse no
 
+exec copyq &
 exec swayidle -w timeout 300 'swaylock'

@@ -1,7 +1,6 @@
 print("Hello!")
 
 
-
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 local uv = vim.uv or vim.loop
 
@@ -37,6 +36,9 @@ require('lazy').setup({
 	{'williamboman/mason.nvim'},
 	{'williamboman/mason-lspconfig.nvim'},
 	{'neovim/nvim-lspconfig'},
+	{'hrsh7th/cmp-nvim-lsp'},
+	{'hrsh7th/nvim-cmp'},
+	{'L3MON4D3/LuaSnip'},
 })
 
 require'nvim-treesitter.configs'.setup {
@@ -49,11 +51,14 @@ vim.opt.termguicolors = true
 vim.cmd.colorscheme('tokyonight')
 
 
+
+
 --Install lsp_zero
 local lsp_zero = require('lsp-zero')
 lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps({buffer = bufnr})
 end)
+
 require('mason').setup({})
 require('mason-lspconfig').setup({
 	ensure_installed = { 
@@ -69,7 +74,17 @@ require('mason-lspconfig').setup({
 		'sqlls',
 		'tsserver',
 		'vuels',
-		'lua_ls','rust_analyzer' }
+		'lua_ls','rust_analyzer' },
+	handlers = {
+		lsp_zero.default_setup,
+	},
+})
+--Confirm completion selection with enter
+local cmp = require('cmp')
+cmp.setup({
+	mapping = cmp.mapping.preset.insert({
+		['<TAB>'] = cmp.mapping.confirm({select = true }),
+	}),
 })
 
 
@@ -99,4 +114,17 @@ vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='cornflowerblue' })
 vim.api.nvim_set_hl(0, 'LineNr', { fg='cyan' })
 vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='cornflowerblue' })
 
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = false
+vim.opt.smartindent = true
+
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME")
+vim.opt.undofile = true
+
+vim.opt.scrolloff = 8
+vim.opt.colorcolumn = "160"
 
