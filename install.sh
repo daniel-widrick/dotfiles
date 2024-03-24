@@ -54,3 +54,12 @@ nvm install node
 #Install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 bash -c "rustup update"
+
+
+
+#Setup vnc service
+sudo cp etc/vncserver\@.service /etc/systemd/system/
+sudo cp bin/vnc_st* /usr/local/bin/
+sudo systemctl daemon-reload
+sudo systemctl enable vncserver@lvlint67
+sudo systemctl restart vncserver@lvlint67

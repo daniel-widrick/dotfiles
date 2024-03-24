@@ -1,0 +1,14 @@
+[Unit]
+Description=Start VNC Server with sway and wayvnc for %i
+
+[Service]
+Type=notify
+Restart=always
+RestartSec=15
+User=%i
+ExecStart=/usr/local/bin/vnc_start.sh
+ExecStop=/usr/local/bin/vnc_stop.sh
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
