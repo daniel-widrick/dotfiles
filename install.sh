@@ -11,7 +11,7 @@ sudo apt update
 sudo apt upgrade -y
 #Install the basic utils
 sudo apt install -y bind9-utils net-tools dnsutils git apt-file file cron \
-	sway swaylock wayvnc xwayland kitty openssl copyq\
+	sway swaylock wayvnc xwayland kitty openssl copyq xsel\
 	firefox
 #Install Jet Brains Unofficial Jetbrains repo
 curl -s https://s3.eu-central-1.amazonaws.com/jetbrains-ppa/0xA6E8698A.pub.asc | gpg --dearmor | sudo tee /usr/share/keyrings/jetbrains-ppa-archive-keyring.gpg > /dev/null
@@ -55,7 +55,8 @@ nvm install node
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 bash -c "rustup update"
 
-
+#Setup user lingering
+sudo loginctl enable-linger lvlint67
 
 #Setup vnc service
 sudo cp etc/vncserver\@.service /etc/systemd/system/
