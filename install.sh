@@ -12,7 +12,9 @@ sudo apt upgrade -y
 #Install the basic utils
 sudo apt install -y bind9-utils net-tools dnsutils git apt-file file cron \
 	sway swaylock wayvnc xwayland kitty openssl copyq xsel\
+	grimshot \
 	firefox
+mkdir ~/Pictures
 #Install Jet Brains Unofficial Jetbrains repo
 curl -s https://s3.eu-central-1.amazonaws.com/jetbrains-ppa/0xA6E8698A.pub.asc | gpg --dearmor | sudo tee /usr/share/keyrings/jetbrains-ppa-archive-keyring.gpg > /dev/null
 echo "deb [signed-by=/usr/share/keyrings/jetbrains-ppa-archive-keyring.gpg] http://jetbrains-ppa.s3-website.eu-central-1.amazonaws.com any main" | sudo tee /etc/apt/sources.list.d/jetbrains-ppa.list > /dev/null
