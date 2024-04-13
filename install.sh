@@ -12,7 +12,7 @@ sudo apt upgrade -y
 #Install the basic utils
 sudo apt install -y bind9-utils net-tools dnsutils git apt-file file cron \
 	sway swaylock wayvnc xwayland kitty openssl copyq xsel\
-	grimshot \
+	grimshot fonts-jetbrains-mono \
 	firefox
 mkdir ~/Pictures
 #Install Jet Brains Unofficial Jetbrains repo
