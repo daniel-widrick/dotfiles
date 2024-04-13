@@ -66,3 +66,13 @@ sudo cp bin/vnc_st* /usr/local/bin/
 sudo systemctl daemon-reload
 sudo systemctl enable vncserver@lvlint67
 sudo systemctl restart vncserver@lvlint67
+
+
+#Setup last parts of dev enviornment
+mkdir ~/git-repos
+cd ~/git-repos
+git clone git@github.com:daniel-widrick/lineinfile.git
+cd lineinfile
+go build lineinfile.go
+sudo cp ./lineinfile /usr/local/bin/lineinfile
+/usr/local/bin/lineinfile ~/.bashrc 'alias cdg="cd ~/git-repos"'
