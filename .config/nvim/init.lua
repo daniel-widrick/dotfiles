@@ -39,6 +39,7 @@ require('lazy').setup({
 	{'hrsh7th/cmp-nvim-lsp'},
 	{'hrsh7th/nvim-cmp'},
 	{'L3MON4D3/LuaSnip'},
+	{'rstacruz/vim-closer'},
 })
 
 require'nvim-treesitter.configs'.setup {
@@ -73,7 +74,7 @@ require('mason-lspconfig').setup({
 		'biome',
 		'sqlls',
 		'tsserver',
-		'vuels',
+		'volar',
 		'lua_ls','rust_analyzer' },
 	handlers = {
 		lsp_zero.default_setup,
@@ -114,9 +115,9 @@ vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='cornflowerblue' })
 vim.api.nvim_set_hl(0, 'LineNr', { fg='cyan' })
 vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='cornflowerblue' })
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 3
+vim.opt.softtabstop = 3
+vim.opt.shiftwidth = 3
 vim.opt.expandtab = false
 vim.opt.smartindent = true
 
@@ -128,3 +129,8 @@ vim.opt.undofile = true
 vim.opt.scrolloff = 8
 vim.opt.colorcolumn = "160"
 
+vim.api.nvim_create_autocmd({'BufWinEnter'}, {
+	desc = 'Return cursor to last known position when opening files',
+	pattern = '*',
+	command = 'silent! normal! g`"zv'
+})
