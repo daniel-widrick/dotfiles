@@ -1,0 +1,8 @@
+
+if [ "$SEVID" -eq 0]; then
+	PS1='[\0333[031m\]\u\[\0333[0m\]'
+fi
+
+
+#if [ -n "$SSH_CONNECTION" ]; then
+

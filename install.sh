@@ -67,6 +67,25 @@ sudo systemctl daemon-reload
 sudo systemctl enable vncserver@lvlint67
 sudo systemctl restart vncserver@lvlint67
 
+#Install Kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+sudo cp kubectl /usr/local/bin/
+sudo chmod +x /usr/local/bin/kubectl
+
+#Install helm
+mkdir /tmp/helm
+cd /tmp/helm
+curl -OL https://get.helm.sh/helm-v3.14.4-linux-amd64.tar.gz
+ls -la
+tar -xzvf helm-v3.14.4-linux-amd64.tar.gz 
+sudo cp linux-amd64/ /usr/local/bin/
+sudo cp linux-amd64/helm /usr/local/bin/
+chmod +x /usr/local/bin/helm 
+sudo chmod +x /usr/local/bin/helm
+cd -
+
+
+
 
 #Setup last parts of dev enviornment
 mkdir ~/git-repos

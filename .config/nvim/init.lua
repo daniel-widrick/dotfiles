@@ -47,6 +47,9 @@ require'nvim-treesitter.configs'.setup {
 
 require("tokyonight").setup {
 	transparent = true,
+	on_colors = function(colors)
+		colors.comment = "#99aa99"
+	end
 }
 vim.opt.termguicolors = true
 vim.cmd.colorscheme('tokyonight')
@@ -109,14 +112,14 @@ vim.keymap.set('n','<leader>fg', tsbuiltin.live_grep, {})
 vim.keymap.set('n','<leader>u', vim.cmd.UndotreeToggle)
 vim.keymap.set('n','<leader>g', vim.cmd.Git)
 --Unbind arrows
-vim.keymap.set('n','<Up>','<Nop>',{ noremap = true, silent=true})
-vim.keymap.set('n','<Down>','<Nop>',{ noremap = true, silent=true})
-vim.keymap.set('n','<Left>','<Nop>',{ noremap = true, silent=true})
-vim.keymap.set('n','<Right>','<Nop>',{ noremap = true, silent=true})
-vim.keymap.set('i','<Up>','<Nop>',{ noremap = true, silent=true})
-vim.keymap.set('i','<Down>','<Nop>',{ noremap = true, silent=true})
-vim.keymap.set('i','<Left>','<Nop>',{ noremap = true, silent=true})
-vim.keymap.set('i','<Right>','<Nop>',{ noremap = true, silent=true})
+--vim.keymap.set('n','<Up>','<Nop>',{ noremap = true, silent=true})
+--vim.keymap.set('n','<Down>','<Nop>',{ noremap = true, silent=true})
+--vim.keymap.set('n','<Left>','<Nop>',{ noremap = true, silent=true})
+--vim.keymap.set('n','<Right>','<Nop>',{ noremap = true, silent=true})
+--vim.keymap.set('i','<Up>','<Nop>',{ noremap = true, silent=true})
+--vim.keymap.set('i','<Down>','<Nop>',{ noremap = true, silent=true})
+--vim.keymap.set('i','<Left>','<Nop>',{ noremap = true, silent=true})
+--vim.keymap.set('i','<Right>','<Nop>',{ noremap = true, silent=true})
 --Set line colors
 vim.wo.relativenumber = true
 vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='cornflowerblue' })
