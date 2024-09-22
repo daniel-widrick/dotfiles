@@ -145,4 +145,14 @@ vim.api.nvim_create_autocmd({'BufWinEnter'}, {
 	pattern = '*',
 	command = 'silent! normal! g`"zv'
 })
-
+--Fix vue html syntax highlighting
+vim.api.nvim_create_autocmd("FileType",{
+	pattern = "htmlangular",
+	command = "set filetype=html",
+})
+vim.api.nvim_create_autocmd("FileType",{
+	pattern = "html",
+	command = "syntax enable",
+})
+--Disable Mouse
+vim.opt.mouse = ""

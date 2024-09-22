@@ -1,8 +1,13 @@
 
-if [ "$SEVID" -eq 0]; then
-	PS1='[\0333[031m\]\u\[\0333[0m\]'
+if [ -n "$SEVID" ] && [ "$SEVID" -eq 0 ]; then
+	export PS1='\[\033[0;31m\]\u\[\033[0m\]'
+else 
+	PS1='\[\033[0;32m\]\u\[\033[0m\]'
 fi
 
+if [ -n "$SSH_CONNECTION" ]; then
+	PS1=$PS1'@\[033[1;31m\]\h:\w \$ \[\033[0m\]'
 
-#if [ -n "$SSH_CONNECTION" ]; then
-
+else
+	PS1=$PS1':\[\033[1;34m\]\w \$ \[\033[0m\]'
+fi
