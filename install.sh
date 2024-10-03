@@ -30,6 +30,7 @@ sudo ./update-golang.sh
 export UPDATE_GOLANG=$(pwd)
 echo "0  4  *  *  *	root	${UPDATE_GOLANG}/update-golang.sh" | sudo tee -a /etc/crontab
 echo 'source /etc/profile.d/golang_path.sh' >> ~/.bashrc
+source /etc/profile.d/golang_path.sh
 cd $SCRIPT_DIR
 
 #Configure sway
