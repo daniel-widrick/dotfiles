@@ -62,6 +62,8 @@ bash -c "rustup update"
 sudo loginctl enable-linger $(whoami)
 
 #Setup vnc service
+sudo apt install mesa-utils libegl1 libgl1-mesa-dri xvfb -y
+sudo usermod -aG render $(whoami)
 sudo cp etc/vncserver\@.service /etc/systemd/system/
 sudo cp bin/vnc_st* /usr/local/bin/
 sudo systemctl daemon-reload
