@@ -5,7 +5,7 @@
 
 # Get apt to be quiet about restarting services
 export DEBIAN_FRONTEND=noninteractive
-export SCRIPT_DIR="$(dirname "$0")"
+export SCRIPT_DIR="$(realpath "$0")"
 
 sudo apt update
 sudo apt upgrade -y
@@ -58,17 +58,17 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 bash -c "rustup update"
 
 #Setup user lingering
-sudo loginctl enable-linger lvlint67
+sudo loginctl enable-linger $(whoami)
 
 #Setup vnc service
 sudo cp etc/vncserver\@.service /etc/systemd/system/
 sudo cp bin/vnc_st* /usr/local/bin/
 sudo systemctl daemon-reload
-sudo systemctl enable vncserver@lvlint67
-sudo systemctl restart vncserver@lvlint67
+sudo systemctl enable vncserver@$(whoami)
+sudo systemctl restart vncserver@$(whoami)
 
 #Install Kubectl
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo cp kubectl /usr/local/bin/
 sudo chmod +x /usr/local/bin/kubectl
 
