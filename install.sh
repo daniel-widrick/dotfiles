@@ -98,3 +98,6 @@ cd lineinfile
 go build lineinfile.go
 sudo cp ./lineinfile /usr/local/bin/lineinfile
 /usr/local/bin/lineinfile ~/.bashrc 'alias cdg="cd ~/git-repos"'
+
+#Auto update neovim stuff
+sudo lineinfile /etc/crontab "0  0  *  *  5     $(whoami)     nvim --headless '+Lazy! sync' +qa"
