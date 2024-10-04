@@ -67,6 +67,7 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
 	ensure_installed = { 
 		'ansiblels',
+		'biome',
 		'bashls',
 		'cssls',
 		'dockerls',
@@ -76,7 +77,6 @@ require('mason-lspconfig').setup({
 		'htmx',
 		'biome',
 		'sqlls',
-		'tsserver',
 		'volar',
 		'lua_ls','rust_analyzer' },
 	handlers = {
