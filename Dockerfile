@@ -17,7 +17,12 @@ RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && dpkg-reconfigu
 
 #Install the nice to have packages
 RUN apt install -y kitty openssl bind9-utils net-tools git apt-file file \
-    ripgrep build-essential gcc make
+    ripgrep build-essential gcc make software-properties-common curl wget
+
+#Install Neovim
+RUN add-apt-repository -y ppa:neovim-ppa/unstable && apt update -y && apt install -y neovim
+#Install Golang
+RUN curl https://raw.githubusercontent.com/udhos/update-golang/refs/heads/master/update-golang.sh | bash
 
 ENV SWAY_CONFIG_FILE=~/.config/sway/config
 ENV SWAY_LAYOUT=grid
@@ -26,7 +31,7 @@ ENV WLR_BACKENDS=headless
 ENV DISPLAY=:1
 
 
-RUN useradd -m $USERNAME --shell /bin/bash  && echo "$USERNAME:${PASSWORD}" | chpasswd
+RUN useradd -m $USERNAME --shell /bin/bash  && echo "$USERNAME:$PASSWORD" | chpasswd
 RUN usermod -aG sudo $USERNAME
 
 
@@ -43,6 +48,10 @@ COPY ./anime* /home/$USERNAME/Downloads
 
 ENV USERNAME=$USERNAME
 ENV XDG_RUNTIME_DIR=/home/$USERNAME/.xdg-runtime
+
+USER root
+RUN chown -R $USERNAME:$USERNAME /home/$USERNAME
+USER $USERNAME
 
 #CMD /bin/bash
 CMD /bin/bash -c "sudo -u $USERNAME /bin/bash -c export XDG_RUNTIME_DIR=/home/$USERNAME/.xdg-runtime; sway & sleep 5 & wayvnc 0.0.0.0 5901 -r /$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY"
