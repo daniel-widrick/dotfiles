@@ -1,0 +1,15 @@
+services:
+  linux-dev-desktop:
+    network_mode: "host"
+    volumes:
+      - ./_data/gitrepos:/home/${USERNAME}/git-repos
+    container_name: linux-dev-desktop
+    build:
+      context: .
+      args:
+        USERNAME: ${MYUSERNAME}
+        PASSWORD: ${PASSWORD}
+    restart: always
+    environment:
+      - USERNAME=lvlint67
+

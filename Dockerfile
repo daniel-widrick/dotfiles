@@ -1,8 +1,6 @@
 FROM ubuntu:latest
 
 #Config
-ARG USERNAME=lvlint67
-ARG PASSWORD=youcantguessitnerd
 
 #Install SWAY / Wayland /VNC
 RUN apt update -y && apt upgrade -y
@@ -35,7 +33,8 @@ ENV SWAY_FONT_FAMILY=Monospace
 ENV WLR_BACKENDS=headless
 ENV DISPLAY=:1
 
-
+ARG USERNAME
+ARG PASSWORD
 RUN useradd -m $USERNAME --shell /bin/bash  && echo "$USERNAME:$PASSWORD" | chpasswd
 RUN usermod -aG sudo $USERNAME
 
@@ -56,7 +55,8 @@ ENV XDG_RUNTIME_DIR=/home/$USERNAME/.xdg-runtime
 
 USER root
 RUN chown -R $USERNAME:$USERNAME /home/$USERNAME
-USER $USERNAME
 
-#CMD /bin/bash
-CMD /bin/bash -c "sudo -u $USERNAME /bin/bash -c export XDG_RUNTIME_DIR=/home/$USERNAME/.xdg-runtime; sway & sleep 5 & wayvnc 0.0.0.0 5901 -r /$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY"
+CMD /bin/bash
+
+USER $USERNAME
+CMD /bin/bash -c "sudo -u $USERNAME /bin/bash -c export XDG_RUNTIME_DIR=/home/lvlint67/.xdg-runtime; sway & sleep 5 & wayvnc 0.0.0.0 5901 -r /$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY"
