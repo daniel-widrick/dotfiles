@@ -19,10 +19,15 @@ RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && dpkg-reconfigu
 RUN apt install -y kitty openssl bind9-utils net-tools git apt-file file \
     ripgrep build-essential gcc make software-properties-common curl wget
 
-#Install Neovim
-RUN add-apt-repository -y ppa:neovim-ppa/unstable && apt update -y && apt install -y neovim
+#Install Neovim and firefox
+RUN add-apt-repository -y ppa:neovim-ppa/unstable 
+RUN add-apt-repository -y ppa:mozillateam/ppa
+COPY etc/mozillateamppa /etc/apt/preferences.d/
+RUN apt update -y && apt install -y neovim firefox
 #Install Golang
 RUN curl https://raw.githubusercontent.com/udhos/update-golang/refs/heads/master/update-golang.sh | bash
+RUN ln -s /usr/local/go/bin/go /usr/local/bin/go
+RUN ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
 
 ENV SWAY_CONFIG_FILE=~/.config/sway/config
 ENV SWAY_LAYOUT=grid

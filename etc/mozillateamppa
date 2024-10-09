@@ -1,0 +1,3 @@
+Package: firefox*
+Pin: release o=LP-PPA-mozillateam, a=noble
+Pin-Priority: 1001
