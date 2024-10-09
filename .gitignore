@@ -7,3 +7,4 @@ package-lock.json
 kubectl
 kubectl.sha256
 .env
+_data/

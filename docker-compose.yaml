@@ -2,7 +2,8 @@ services:
   linux-dev-desktop:
     network_mode: "host"
     volumes:
-      - ./_data/gitrepos:/home/${USERNAME}/git-repos
+      - ./_data/${MYUSERNAME}/.ssh:/home/${MYUSERNAME}/.ssh
+      - ./_data/${MYUSERNAME}/git-repos:/home/${MYUSERNAME}/git-repos
     container_name: linux-dev-desktop
     build:
       context: .
@@ -11,5 +12,6 @@ services:
         PASSWORD: ${PASSWORD}
     restart: always
     environment:
-      - USERNAME=lvlint67
+      - USERNAME=${MYUSERNAME}
+      - MYUSERNAME=${MYUSERNAME}
 
