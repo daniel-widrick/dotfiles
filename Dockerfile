@@ -1,26 +1,29 @@
 FROM ubuntu:latest
 
 #Config
+RUN apt update -y && apt install -y iproute2 
+##Proxy apt through local apt cahce for faster builds
+RUN bash -c "echo 'Acquire::http::Proxy \"http://$(ip route | awk 'NR==1 {print $3}')\":3142;' > /etc/apt/apt.conf.d/01proxy"
 
 #Install SWAY / Wayland /VNC
 RUN apt update -y && apt upgrade -y
 RUN apt install -y ubuntu-standard
 RUN apt install -y sway xwayland dbus-x11 wayvnc libvncserver1 sudo passwd swayidle swaylock openssh-server
-
-#Just the baseline stuff
-RUN apt install -y iproute2 iputils-ping tzdata
-#Local Time!
-RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
-
+COPY ./etc/sshd_config /etc/ssh/
 
 #Install the nice to have packages
 RUN apt install -y kitty openssl bind9-utils net-tools git apt-file file \
-    ripgrep build-essential gcc make software-properties-common curl wget
+    ripgrep build-essential gcc make software-properties-common curl wget \
+    tzdata
+#Local Time!
+RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
 #Install Neovim and firefox
 RUN add-apt-repository -y ppa:neovim-ppa/unstable 
 RUN add-apt-repository -y ppa:mozillateam/ppa
 COPY etc/mozillateamppa /etc/apt/preferences.d/
+##Force https sources to http for caching support
+RUN find /etc/apt/sources.list /etc/apt/sources.list.d/ -type f -exec sed -Ei 's!https!http!g' {} \;
 RUN apt update -y && apt install -y neovim firefox
 #Install Golang
 RUN curl https://raw.githubusercontent.com/udhos/update-golang/refs/heads/master/update-golang.sh | bash
@@ -30,6 +33,8 @@ RUN ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
 #Add an ssh server :: TODO: handle host key persistence?
 RUN mkdir -p /run/sshd && chmod 755 /run/sshd
 
+
+#Setup local non-root user
 ENV SWAY_CONFIG_FILE=~/.config/sway/config
 ENV SWAY_LAYOUT=grid
 ENV SWAY_FONT_FAMILY=Monospace
@@ -43,9 +48,6 @@ RUN usermod -aG sudo $USERNAME
 
 ENV XDG_RUNTIME_DIR=/tmp/.xdg-runtime
 ENV WAYLAND_DISPLAY=wayland-1
-
-
-
 
 USER $USERNAME
 ENV HOME=/home/$USERNAME
@@ -64,10 +66,4 @@ RUN chown -R $USERNAME:$USERNAME /home/$USERNAME
 
 COPY entry.sh /root/
 RUN chmod 700 /root/entry.sh
-
 CMD /root/entry.sh
-
-#USER $USERNAME
-#CMD /bin/bash -c "sshd & sudo -u $USERNAME /bin/bash -c sway & sleep 5 & wayvnc 0.0.0.0 5901 -r /$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY"
-
-

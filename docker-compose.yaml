@@ -1,9 +1,19 @@
 services:
+  apt-cache:
+    image: sameersbn/apt-cacher-ng:latest
+    container_name: apt-cacher-ng
+    restart: always
+    ports:
+      - "3142:3142"
+    volumes:
+      - ./_apt_cache:/var/cache/apt-cacher-ng
+      - ./etc/acng.conf:/etc/apt-cacher-ng/acng.conf
   linux-dev-desktop:
     network_mode: "host"
     volumes:
       - ./_data/${MYUSERNAME}/.ssh:/home/${MYUSERNAME}/.ssh
       - ./_data/${MYUSERNAME}/git-repos:/home/${MYUSERNAME}/git-repos
+      - ./_data/etc/ssh:/etc/ssh
     container_name: linux-dev-desktop
     build:
       context: .
@@ -11,7 +21,8 @@ services:
         USERNAME: ${MYUSERNAME}
         PASSWORD: ${PASSWORD}
     restart: always
+    depends_on:
+      - apt-cache
     environment:
       - USERNAME=${MYUSERNAME}
       - MYUSERNAME=${MYUSERNAME}
-
