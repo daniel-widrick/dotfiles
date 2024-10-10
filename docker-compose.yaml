@@ -20,6 +20,7 @@ services:
       args:
         USERNAME: ${MYUSERNAME}
         PASSWORD: ${PASSWORD}
+        CACHE_URL: ${CACHE_URL}
     restart: always
     depends_on:
       - apt-cache
