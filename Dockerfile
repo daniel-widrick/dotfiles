@@ -11,15 +11,6 @@ RUN apt install -y ubuntu-standard
 RUN apt install -y sway xwayland dbus-x11 wayvnc libvncserver1 sudo passwd swayidle swaylock openssh-server
 #Configure SSH
 COPY ./etc/sshd_config /etc/ssh/
-RUN if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then \
-        ssh-keygen -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -N ''; \
-    fi && \
-    if [ ! -f /etc/ssh/ssh_host_ecdsa_key ]; then \
-        ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N ''; \
-    fi && \
-    if [ ! -f /etc/ssh/ssh_host_ed25519_key ]; then \
-        ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ''; \
-    fi
 
 #Install the nice to have packages
 RUN apt install -y kitty openssl bind9-utils net-tools git apt-file file \
@@ -74,6 +65,7 @@ ENV XDG_RUNTIME_DIR=/tmp/.xdg-runtime
 USER root
 RUN chown -R $USERNAME:$USERNAME /home/$USERNAME
 
+RUN echo "cache buster"
 COPY entry.sh /root/
 RUN chmod 700 /root/entry.sh
 CMD /root/entry.sh
