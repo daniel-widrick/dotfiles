@@ -65,7 +65,6 @@ ENV XDG_RUNTIME_DIR=/tmp/.xdg-runtime
 USER root
 RUN chown -R $USERNAME:$USERNAME /home/$USERNAME
 
-RUN echo "cache buster"
 COPY entry.sh /root/
 RUN chmod 700 /root/entry.sh
 CMD /root/entry.sh
