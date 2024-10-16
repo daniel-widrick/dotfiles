@@ -20,7 +20,10 @@ then
 fi
 chown -R ${MYUSERNAME}:${MYUSERNAME} /home/${MYUSERNAME}/.ssh
 chown -R ${MYUSERNAME}:${MYUSERNAME} /home/${MYUSERNAME}/git-repos
+chown -R ${MYUSERNAME}:${MYUSERNAME} /home/${MYUSERNAME}/.mozilla
 chmod 700 /home/${MYUSERNAME}/.ssh
+chmod 770 /home/${MYUSERNAME}/.mozilla
+chmod 770 /home/${MYUSERNAME}/git-repos
 
 echo "Starting SSH Server..."
 sshd
