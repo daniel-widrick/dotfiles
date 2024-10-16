@@ -27,6 +27,8 @@ sshd
 
 echo "My Docker user: ${MYUSERNAME}"
 echo "${MYUSERNAME}:${PASSWORD}" | chpasswd
+unset PASSWORD
+
 
 echo "Start sway..."
 sudo -E -u ${MYUSERNAME} sway &
