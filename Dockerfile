@@ -25,7 +25,9 @@ RUN add-apt-repository -y ppa:mozillateam/ppa
 COPY etc/mozillateamppa /etc/apt/preferences.d/
 ##Force https sources to http for caching support
 RUN find /etc/apt/sources.list /etc/apt/sources.list.d/ -type f -exec sed -Ei 's!https!http!g' {} \;
-RUN apt update -y && apt install -y neovim firefox
+RUN apt update -y
+RUN apt install -y neovim 
+RUN apt install -y firefox
 #Install Golang
 RUN curl https://raw.githubusercontent.com/udhos/update-golang/refs/heads/master/update-golang.sh | bash
 RUN ln -s /usr/local/go/bin/go /usr/local/bin/go
@@ -44,7 +46,7 @@ ENV DISPLAY=:1
 
 ARG USERNAME
 ARG PASSWORD
-RUN useradd -m $USERNAME --shell /bin/bash  && echo "$USERNAME:$PASSWORD" | chpasswd
+RUN useradd -m $USERNAME --shell /bin/bash 
 RUN usermod -aG sudo $USERNAME
 
 ENV XDG_RUNTIME_DIR=/tmp/.xdg-runtime

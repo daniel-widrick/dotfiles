@@ -26,6 +26,7 @@ echo "Starting SSH Server..."
 sshd
 
 echo "My Docker user: ${MYUSERNAME}"
+echo "${MYUSERNAME}:${PASSWORD}" | chpasswd
 
 echo "Start sway..."
 sudo -E -u ${MYUSERNAME} sway &
