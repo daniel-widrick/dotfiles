@@ -64,18 +64,16 @@ RUN mkdir ./.config
 COPY .config ./.config/
 RUN mkdir /home/$USERNAME/Downloads
 COPY ./anime* /home/$USERNAME/Downloads
+RUN touch /home/$USERNAME/.gitconfig
 
 ENV USERNAME=$USERNAME
 ENV XDG_RUNTIME_DIR=/tmp/.xdg-runtime
+RUN bash -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile=minimal"
+RUN /home/$USERNAME/.cargo/bin/rustup update
 
 
 USER root
 RUN chown -v -R $USERNAME:$USERNAME /home/$USERNAME
-
-USER $USERNAME
-RUN bash -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
-RUN /home/$USERNAME/.cargo/bin/rustup update
-USER root
 
 COPY entry.sh /root/
 RUN chmod 700 /root/entry.sh

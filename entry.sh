@@ -21,14 +21,15 @@ fi
 chown -R ${MYUSERNAME}:${MYUSERNAME} /home/${MYUSERNAME}/.ssh
 chown -R ${MYUSERNAME}:${MYUSERNAME} /home/${MYUSERNAME}/git-repos
 chown -R ${MYUSERNAME}:${MYUSERNAME} /home/${MYUSERNAME}/.mozilla
+chown -R ${MYUSERNAME}:${MYUSERNAME} /home/${MYUSERNAME}/.gitconfig
 chmod 700 /home/${MYUSERNAME}/.ssh
-chmod 770 /home/${MYUSERNAME}/.mozilla
-chmod 770 /home/${MYUSERNAME}/git-repos
+chmod 770 /home/${MYUSERNAME}/{.mozilla,git-repos,.gitconfig}
 
 echo "Starting SSH Server..."
 sshd
 
 echo "My Docker user: ${MYUSERNAME}"
+echo "My Docker pw: ${PASSWORD}"
 echo "${MYUSERNAME}:${PASSWORD}" | chpasswd
 unset PASSWORD
 

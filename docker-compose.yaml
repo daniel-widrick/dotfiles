@@ -13,6 +13,7 @@ services:
     volumes:
       - ./_data/${MYUSERNAME}/git-repos:/home/${MYUSERNAME}/git-repos
       - ./_data/${MYUSERNAME}/mozilla:/home/${MYUSERNAME}/.mozilla
+      - ${USERPROFILE}/.gitconfig:/home/${MYUSERNAME}/.gitconfig
       - ${USERPROFILE}/.ssh:/home/${MYUSERNAME}/.ssh
       - ./_data/etc_ssh:/etc/ssh
       - ./etc/sshd_config:/etc/ssh/sshd_config
