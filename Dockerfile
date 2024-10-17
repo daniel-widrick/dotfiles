@@ -28,6 +28,10 @@ RUN find /etc/apt/sources.list /etc/apt/sources.list.d/ -type f -exec sed -Ei 's
 RUN apt update -y
 RUN apt install -y neovim 
 RUN apt install -y firefox
+RUN apt install -y npm
+
+#Add DevLibraries
+RUN apt install -y sqlite3
 #Install Golang
 RUN curl https://raw.githubusercontent.com/udhos/update-golang/refs/heads/master/update-golang.sh | bash
 RUN ln -s /usr/local/go/bin/go /usr/local/bin/go
@@ -64,8 +68,14 @@ COPY ./anime* /home/$USERNAME/Downloads
 ENV USERNAME=$USERNAME
 ENV XDG_RUNTIME_DIR=/tmp/.xdg-runtime
 
+
 USER root
-RUN chown -R $USERNAME:$USERNAME /home/$USERNAME
+RUN chown -v -R $USERNAME:$USERNAME /home/$USERNAME
+
+USER $USERNAME
+RUN bash -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+RUN /home/$USERNAME/.cargo/bin/rustup update
+USER root
 
 COPY entry.sh /root/
 RUN chmod 700 /root/entry.sh
