@@ -144,6 +144,14 @@ output * {
         resolution 1920x1080
 }
 focus_follows_mouse no
+bindsym $mod+F1 output HEADLESS-1 mode 2728x1438
+bindsym $mod+F2 output HEADLESS-1 mode 1920x1080
 
-exec copyq
+input "0:0:wlr_virtual_pointer_v1" {
+	natural_scroll enabled
+	scroll_factor 0.2
+	}
+
+#exec copyq
 exec swayidle -w timeout 300 'pgrep swaylock || swaylock'
+exec swaylock -f

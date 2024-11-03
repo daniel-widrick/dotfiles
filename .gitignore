@@ -6,3 +6,6 @@ package-lock.json
 .idea
 kubectl
 kubectl.sha256
+.env
+_data/
+_apt_cache/
