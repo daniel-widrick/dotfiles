@@ -1,3 +1,3 @@
 Package: firefox*
-Pin: release o=LP-PPA-mozillateam, a=oracular
+Pin: release o=LP-PPA-mozillateam, a=currentcodename
 Pin-Priority: 1001
