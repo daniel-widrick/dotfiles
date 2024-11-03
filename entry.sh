@@ -23,6 +23,9 @@ chown -R ${MYUSERNAME}:${MYUSERNAME} /home/${MYUSERNAME}/git-repos
 chown -R ${MYUSERNAME}:${MYUSERNAME} /home/${MYUSERNAME}/.mozilla
 chown -R ${MYUSERNAME}:${MYUSERNAME} /home/${MYUSERNAME}/.gitconfig
 chmod 700 /home/${MYUSERNAME}/.ssh
+chmod 600 /home/${MYUSERNAME}/.ssh/id_rsa
+chmod 644 /home/${MYUSERNAME}/.ssh/id_rsa.pub
+chmod 600 /home/${MYUSERNAME}/.ssh/auhorized_keys
 chmod 770 /home/${MYUSERNAME}/{.mozilla,git-repos,.gitconfig}
 
 echo "Starting SSH Server..."

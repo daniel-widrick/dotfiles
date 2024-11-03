@@ -1,4 +1,5 @@
-FROM ubuntu:latest
+#FROM ubuntu:latest
+FROM ubuntu:rolling
 
 #Config
 ARG CACHE_URL
@@ -20,15 +21,21 @@ RUN apt install -y kitty openssl bind9-utils net-tools git apt-file file \
 RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
 #Install Neovim and firefox
-RUN add-apt-repository -y ppa:neovim-ppa/unstable 
+#RUN add-apt-repository -y ppa:neovim-ppa/unstable 
 RUN add-apt-repository -y ppa:mozillateam/ppa
 COPY etc/mozillateamppa /etc/apt/preferences.d/
 ##Force https sources to http for caching support
 RUN find /etc/apt/sources.list /etc/apt/sources.list.d/ -type f -exec sed -Ei 's!https!http!g' {} \;
 RUN apt update -y
-RUN apt install -y neovim 
+#RUN apt install -y neovim 
 RUN apt install -y firefox
 RUN apt install -y npm
+
+RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz && \
+    tar xzf nvim-linux64.tar.gz && \
+    mv nvim-linux64 /usr/local/ && \
+    ln -s /usr/local/nvim-linux64/bin/nvim /usr/local/bin/nvim && \
+    rm nvim-linux64.tar.gz
 
 #Add DevLibraries
 RUN apt install -y sqlite3
