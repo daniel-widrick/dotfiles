@@ -23,7 +23,6 @@ RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && dpkg-reconfigu
 #Install Neovim and firefox
 #RUN add-apt-repository -y ppa:neovim-ppa/unstable 
 RUN add-apt-repository -y ppa:mozillateam/ppa
-RUN echo "hello"
 COPY etc/mozillateamppa /etc/apt/preferences.d/
 RUN sed -i "s/currentcodename/$(grep VERSION_CODENAME /etc/os-release | awk -F= '{print $2}')/" /etc/apt/preferences.d/mozillateamppa
 ##Force https sources to http for caching support

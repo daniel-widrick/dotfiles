@@ -29,7 +29,7 @@ chmod 600 /home/${MYUSERNAME}/.ssh/auhorized_keys
 chmod 770 /home/${MYUSERNAME}/{.mozilla,git-repos,.gitconfig}
 
 echo "Starting SSH Server..."
-sshd
+/usr/sbin/sshd
 
 echo "My Docker user: ${MYUSERNAME}"
 echo "My Docker pw: ${PASSWORD}"
