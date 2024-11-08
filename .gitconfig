@@ -5,3 +5,5 @@
 	name = Daniel Widrick
 [core]
 	autocrlf = input
+[push]
+	autoSetupRemote = true
