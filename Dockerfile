@@ -9,7 +9,7 @@ RUN bash -c "echo 'Acquire::http::Proxy \"${CACHE_URL}\";' > /etc/apt/apt.conf.d
 #Install SWAY / Wayland /VNC / SSH
 RUN apt update -y && apt upgrade -y
 RUN apt install -y ubuntu-standard
-RUN apt install -y sway xwayland dbus-x11 wayvnc libvncserver1 sudo passwd swayidle swaylock openssh-server
+RUN apt install -y sway xwayland dbus-x11 wayvnc libvncserver1 sudo passwd swayidle swaylock openssh-server wl-clipboard
 #Configure SSH
 COPY ./etc/sshd_config /etc/ssh/
 

@@ -151,3 +151,13 @@ vim.api.nvim_create_autocmd("FileType",{
 })
 --Disable Mouse
 vim.opt.mouse = ""
+--Allow highlighting without line numbers
+vim.opt.mouse:append("a")
+--Allow Copy
+vim.api.nvim_set_keymap("v","<C-c>", "+y", { noremap = true})
+vim.opt.clipboard = "unnamedplus"
+vim.opt.foldenable = false
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldnestmax = 100
