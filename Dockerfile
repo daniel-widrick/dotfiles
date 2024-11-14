@@ -16,7 +16,7 @@ COPY ./etc/sshd_config /etc/ssh/
 #Install the nice to have packages
 RUN apt install -y kitty openssl bind9-utils net-tools git apt-file file \
     ripgrep build-essential gcc make software-properties-common curl wget \
-    tzdata iproute2
+    tzdata iproute2 tidy
 #Local Time!
 RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
@@ -70,6 +70,7 @@ WORKDIR /home/$USERNAME
 RUN mkdir -p $XDG_RUNTIME_DIR && chown $USERNAME:$USERNAME $XDG_RUNTIME_DIR && chmod 700 $XDG_RUNTIME_DIR
 RUN mkdir ./.config
 COPY .config ./.config/
+COPY .config/.tidyrc ./.tidyrc
 RUN mkdir /home/$USERNAME/Downloads
 COPY ./anime* /home/$USERNAME/Downloads
 RUN touch /home/$USERNAME/.gitconfig
