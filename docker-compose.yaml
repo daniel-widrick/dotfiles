@@ -6,16 +6,14 @@ services:
     ports:
       - "3142:3142"
     volumes:
-      - ./_apt_cache:/var/cache/apt-cacher-ng
-      - ./etc/acng.conf:/etc/apt-cacher-ng/acng.conf
+      - apt_cache:/var/cache/apt-cacher-ng
+      - ./etc/acng.conf:/etc/apt-cacher-ng/acng.conf:rw
   linux-dev-desktop:
-    network_mode: "host"
+    network_mode: ${NETWORK_MODE}
     volumes:
-      - ./_data/${MYUSERNAME}/git-repos:/home/${MYUSERNAME}/git-repos
-      - ./_data/${MYUSERNAME}/mozilla:/home/${MYUSERNAME}/.mozilla
-      - ${USERPROFILE}/.gitconfig:/home/${MYUSERNAME}/.gitconfig
-      - ${USERPROFILE}/.ssh:/home/${MYUSERNAME}/.ssh
-      - ./_data/etc_ssh:/etc/ssh
+      - linuxdevDataGitRepos:/home/${MYUSERNAME}/git-repos
+      - linuxdevDataMozilla:/home/${MYUSERNAME}/.mozilla
+      - linuxdevDataetc_ssh:/etc/ssh
       - ./etc/sshd_config:/etc/ssh/sshd_config
     container_name: linux-dev-desktop
     build:
@@ -31,3 +29,8 @@ services:
       - USERNAME=${MYUSERNAME}
       - MYUSERNAME=${MYUSERNAME}
       - PASSWORD=${PASSWORD}
+volumes:
+  linuxdevDataGitRepos:
+  linuxdevDataMozilla:
+  linuxdevDataetc_ssh:
+  apt_cache:
