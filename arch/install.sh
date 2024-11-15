@@ -35,12 +35,13 @@ DHCP=yes
 EOF
 
 
-pacman -Sy openssh vim docker docker-compose sudo cronie git --noconfirm
+pacman -Sy openssh vim docker docker-compose sudo cronie git less --noconfirm
 echo '%wheel ALL=(ALL:ALL) ALL' >> /etc/sudoers
 useradd -m lvlint67
 echo 'lvlint67:lvlint67' | chpasswd
 
 usermod -aG wheel lvlint67
+usermod -aG docker lvlint67
 
 echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
 
