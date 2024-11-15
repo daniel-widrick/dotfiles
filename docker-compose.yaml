@@ -9,7 +9,7 @@ services:
       - apt_cache:/var/cache/apt-cacher-ng
       - ./etc/acng.conf:/etc/apt-cacher-ng/acng.conf:rw
   linux-dev-desktop:
-    network_mode: ${NETWORK_MODE}
+    network_mode: host
     volumes:
       - linuxdevDataGitRepos:/home/${MYUSERNAME}/git-repos
       - linuxdevDataMozilla:/home/${MYUSERNAME}/.mozilla

@@ -44,6 +44,7 @@ usermod -aG wheel lvlint67
 usermod -aG docker lvlint67
 
 echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
+echo 'Port 6722' >> /etc/ssh/sshd_config
 
 systemctl enable systemd-networkd
 systemctl enable sshd
