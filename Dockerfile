@@ -16,7 +16,7 @@ COPY ./etc/sshd_config /etc/ssh/
 #Install the nice to have packages
 RUN apt install -y kitty openssl bind9-utils net-tools git apt-file file \
     ripgrep build-essential gcc make software-properties-common curl wget \
-    tzdata iproute2 tidy
+    tzdata iproute2 tidy iputils-ping
 #Local Time!
 RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
