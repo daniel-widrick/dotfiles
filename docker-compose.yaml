@@ -13,6 +13,7 @@ services:
     volumes:
       - linuxdevDataGitRepos:/home/${MYUSERNAME}/git-repos
       - linuxdevDataMozilla:/home/${MYUSERNAME}/.mozilla
+      - linuxdevHome_ssh:/home/${MYUSERNAME}/.ssh
       - linuxdevDataetc_ssh:/etc/ssh
       - ./etc/sshd_config:/etc/ssh/sshd_config
     container_name: linux-dev-desktop
@@ -33,4 +34,5 @@ volumes:
   linuxdevDataGitRepos:
   linuxdevDataMozilla:
   linuxdevDataetc_ssh:
+  linuxdevHome_ssh:
   apt_cache:

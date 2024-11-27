@@ -40,6 +40,7 @@ require('lazy').setup({
 	{'hrsh7th/nvim-cmp'},
 	{'L3MON4D3/LuaSnip'},
 	{'rstacruz/vim-closer'},
+	{"ellisonleao/glow.nvim", config = true, cmd = "Glow"},
 })
 
 require'nvim-treesitter.configs'.setup {

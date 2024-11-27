@@ -73,7 +73,7 @@ COPY .config ./.config/
 COPY .config/.tidyrc ./.tidyrc
 RUN mkdir /home/$USERNAME/Downloads
 COPY ./anime* /home/$USERNAME/Downloads
-RUN touch /home/$USERNAME/.gitconfig
+COPY ./.gitconfig /home/$USERNAME
 
 ENV USERNAME=$USERNAME
 ENV XDG_RUNTIME_DIR=/tmp/.xdg-runtime
