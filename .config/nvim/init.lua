@@ -117,6 +117,14 @@ vim.keymap.set('n','<leader>g', vim.cmd.Git)
 --vim.keymap.set('i','<Left>','<Nop>',{ noremap = true, silent=true})
 --vim.keymap.set('i','<Right>','<Nop>',{ noremap = true, silent=true})
 --Set line colors
+vim.o.updatetime = 250
+vim.api.nvim_create_autocmd({ "cursorHold", "cursorHoldI" }, {
+	group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
+	callback = function ()
+		vim.diagnostic.open_float(nil, {focus=false})
+	end
+})
+
 vim.wo.relativenumber = true
 vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='cornflowerblue' })
 vim.api.nvim_set_hl(0, 'LineNr', { fg='cyan' })
