@@ -67,8 +67,6 @@ end)
 require('mason').setup({})
 require('mason-lspconfig').setup({
 	ensure_installed = { 
-		'css-lsp',
-		'typescript-language-server',
 		'dockerls',
 		'eslint',
 		'gopls',
