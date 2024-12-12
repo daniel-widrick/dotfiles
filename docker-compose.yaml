@@ -1,13 +1,4 @@
 services:
-  #  apt-cache:
-  #  image: sameersbn/apt-cacher-ng:latest
-  #  container_name: apt-cacher-ng
-  #  restart: always
-  #  ports:
-  #    - "3142:3142"
-  #  volumes:
-  #    - apt_cache:/var/cache/apt-cacher-ng
-  #    - ./etc/acng.conf:/etc/apt-cacher-ng/acng.conf:rw
   apt-cache:
     build: ./aptCacher/
     ports:
