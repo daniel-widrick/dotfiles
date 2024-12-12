@@ -1,5 +1,6 @@
 print("Hello!")
 
+vim = vim
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 local uv = vim.uv or vim.loop
@@ -50,6 +51,8 @@ require("tokyonight").setup {
 	transparent = true,
 	on_colors = function(colors)
 		colors.comment = "#99aa99"
+		colors.magenta2 = "#9999aa"
+		colors.DiagnosticUnnecessary  = "#ffffff"
 	end
 }
 vim.opt.termguicolors = true
@@ -66,7 +69,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-	ensure_installed = { 
+	ensure_installed = {
 		'dockerls',
 		'eslint',
 		'gopls',
@@ -121,7 +124,10 @@ vim.o.updatetime = 250
 vim.api.nvim_create_autocmd({ "cursorHold", "cursorHoldI" }, {
 	group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
 	callback = function ()
-		vim.diagnostic.open_float(nil, {focus=false})
+		vim.diagnostic.open_float(nil, {
+			focus=false,
+			offset_y= -5,
+		})
 	end
 })
 
@@ -170,3 +176,6 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 99
 vim.opt.foldnestmax = 100
+
+
+
