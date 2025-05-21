@@ -9,7 +9,7 @@ RUN bash -c "echo 'Acquire::http::Proxy \"${CACHE_URL}\";' > /etc/apt/apt.conf.d
 #Install SWAY / Wayland /VNC / SSH
 RUN apt update -y && apt upgrade -y
 RUN apt install -y ubuntu-standard
-RUN apt install -y sway xwayland dbus-x11 wayvnc libvncserver1 sudo passwd swayidle swaylock openssh-server wl-clipboard
+RUN apt install -y sway xwayland dbus-x11 wayvnc libvncserver1 sudo passwd swayidle swaylock openssh-server wl-clipboard dmenu
 #Configure SSH
 COPY ./etc/sshd_config /etc/ssh/
 
@@ -32,11 +32,11 @@ RUN apt update -y
 RUN apt install -y firefox
 RUN apt install -y npm
 
-RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz && \
-    tar xzf nvim-linux64.tar.gz && \
-    mv nvim-linux64 /usr/local/ && \
+RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && \
+    tar xzf nvim-linux-x86_64.tar.gz && \
+    mv nvim-linux-x86_64 /usr/local/ && \
     ln -s /usr/local/nvim-linux64/bin/nvim /usr/local/bin/nvim && \
-    rm nvim-linux64.tar.gz
+    rm nvim-linux-x86_64.tar.gz
 
 #Add DevLibraries
 RUN apt install -y sqlite3
@@ -47,6 +47,16 @@ RUN ln -s /usr/local/go/bin/gofmt /usr/local/bin/gofmt
 
 #Add an ssh server :: TODO: handle host key persistence?
 RUN mkdir -p /run/sshd && chmod 755 /run/sshd
+
+RUN mkdir -p /etc/apt/keyrings && \
+    curl -fsSL https://packages.microsoft.com/keys/microsoft.asc \
+    | gpg --dearmor -o /etc/apt/keyrings/microsoft.gpg && \
+    echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.gpg] \
+    https://packages.microsoft.com/repos/code stable main" \
+    > /etc/apt/sources.list.d/vscode.list
+RUN echo 'Acquire::HTTPS::packages.microsoft.com::Proxy "DIRECT";' \
+    > /etc/apt/apt.conf.d/99no-ms-proxy
+RUN apt update -y && apt install -y code
 
 
 #Setup local non-root user

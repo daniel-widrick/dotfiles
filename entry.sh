@@ -2,6 +2,7 @@
 
 export XDG_RUNTIME_DIR=/tmp/.xdg-runtime
 export WAYLAND_DISPLAY=wayland-1
+export DONT_PROMPT_WSL_INSTALL=1
 
 
 #Generate ssh host keys if they don't exist
